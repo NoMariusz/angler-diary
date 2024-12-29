@@ -12,14 +12,9 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.angler_diary.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_fishes"
+        android:name="com.example.angler_diary.ui.list.ListFragment"
+        android:label="@string/menu_fishes"
+        tools:layout="@layout/fragment_list" />
 
-    <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.angler_diary.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
 </navigation>
