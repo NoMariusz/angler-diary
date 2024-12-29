@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.angler_diary"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.angler_diary"
