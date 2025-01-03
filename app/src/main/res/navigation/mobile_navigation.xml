@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_home"
@@ -12,9 +12,44 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_fishing_trips"
+        android:name="com.example.angler_diary.ui.list.ListFragment"
+        android:label="@string/menu_fishing_trip"
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="fishingObject"
+            android:defaultValue="FishingTrip"
+            app:argType="com.example.angler_diary.FishingObjects" />
+    </fragment>
+    <fragment
         android:id="@+id/nav_fishes"
         android:name="com.example.angler_diary.ui.list.ListFragment"
         android:label="@string/menu_fishes"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <argument
+            android:name="fishingObject"
+            app:argType="com.example.angler_diary.FishingObjects"
+            android:defaultValue="Fish" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fishing_grounds"
+        android:name="com.example.angler_diary.ui.list.ListFragment"
+        android:label="@string/menu_fishing_ground"
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="fishingObject"
+            android:defaultValue="FishingGround"
+            app:argType="com.example.angler_diary.FishingObjects" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fish_species"
+        android:name="com.example.angler_diary.ui.list.ListFragment"
+        android:label="@string/menu_fish_species"
+        tools:layout="@layout/fragment_list">
+        <argument
+            android:name="fishingObject"
+            app:argType="com.example.angler_diary.FishingObjects"
+            android:defaultValue="FishSpecies" />
+    </fragment>
 
 </navigation>

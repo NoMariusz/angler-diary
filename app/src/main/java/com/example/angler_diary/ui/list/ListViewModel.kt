@@ -9,4 +9,8 @@ class ListViewModel : ViewModel() {
         value = "This is list Fragment"
     }
     val text: LiveData<String> = _text
+
+    fun updateText(value: String){
+        _text.value = value
+    }
 }
