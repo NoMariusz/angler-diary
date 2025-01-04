@@ -31,14 +31,9 @@ class ListFragment : Fragment() {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        Log.d("ListFragment", "onCreateView called")
-
         databaseViewModel = ViewModelProvider(this)[DatabaseViewModel::class.java]
 
-        Log.d("ListFragment", "databaseViewModel crated")
-
         loadTitle()
-        Log.d("ListFragment", "title loaded")
         loadRecyclerView()
 
         return root
