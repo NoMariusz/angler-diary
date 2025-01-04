@@ -1,16 +1,13 @@
 package com.example.angler_diary.ui.list.views
 
 import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angler_diary.FishingObjects
-import com.example.angler_diary.FormActivity
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.FishingObjectEntity
-import com.example.angler_diary.logic.FormModes
 import com.example.angler_diary.ui.list.views.adapters.FishingObjectListRecyclerViewAdapter
 import com.example.angler_diary.ui.list.views.adapters.FishingObjectListRecyclerViewViewHolder
 

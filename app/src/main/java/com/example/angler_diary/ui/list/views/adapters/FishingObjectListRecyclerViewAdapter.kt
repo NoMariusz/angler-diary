@@ -1,8 +1,6 @@
 package com.example.angler_diary.ui.list.views.adapters
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.angler_diary.FishingObjects
-import com.example.angler_diary.ui.list.views.adapters.FishSpeciesRecyclerViewAdapter.FishSpeciesViewHolder
 
 abstract class FishingObjectListRecyclerViewAdapter<T, VH : FishingObjectListRecyclerViewViewHolder> :
     RecyclerView.Adapter<VH>() {

@@ -16,5 +16,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Form</string>
 
-    <string name="form_apply">Save</string>
+    <string name="form_delete">Delete</string>
+    <string name="form_cancel">Cancel</string>
+    <string name="form_save">Save</string>
 </resources>

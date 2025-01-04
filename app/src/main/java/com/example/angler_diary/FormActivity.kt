@@ -32,4 +32,8 @@ class FormActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.setDisplayShowTitleEnabled(false)
     }
+
+    fun goBack(){
+        finish()
+    }
 }

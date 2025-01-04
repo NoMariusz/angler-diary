@@ -1,4 +1,4 @@
-package com.example.angler_diary.logic
+package com.example.angler_diary.logic.form
 
 enum class FormModes {
     Adding,

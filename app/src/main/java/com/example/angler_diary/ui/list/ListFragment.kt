@@ -1,10 +1,8 @@
 package com.example.angler_diary.ui.list
 
 
-import android.R.attr.value
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,7 @@ import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.FormActivity
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentListBinding
-import com.example.angler_diary.logic.FormModes
+import com.example.angler_diary.logic.form.FormModes
 
 
 class ListFragment : Fragment() {
