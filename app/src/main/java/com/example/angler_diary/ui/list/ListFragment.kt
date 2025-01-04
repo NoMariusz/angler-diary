@@ -1,8 +1,8 @@
 package com.example.angler_diary.ui.list
 
-import com.example.angler_diary.database.DatabaseViewModel
 
-
+import android.R.attr.value
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,7 +12,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.angler_diary.FishingObjects
+import com.example.angler_diary.FormActivity
+import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentListBinding
+import com.example.angler_diary.logic.FormModes
+
 
 class ListFragment : Fragment() {
 
@@ -35,6 +39,7 @@ class ListFragment : Fragment() {
 
         loadTitle()
         loadRecyclerView()
+        connectAddObject()
 
         return root
     }
@@ -59,5 +64,21 @@ class ListFragment : Fragment() {
     private fun getFishingObject(): FishingObjects {
         return (arguments?.get("fishingObject")
             ?: throw Exception("No fishing object provided to ListFragment")) as FishingObjects
+    }
+
+    private fun connectAddObject(){
+        binding.fab.setOnClickListener {
+            navToAddObjectForm()
+        }
+    }
+
+    private fun navToAddObjectForm(){
+        val myIntent = Intent(
+            requireContext(),
+            FormActivity::class.java
+        )
+        myIntent.putExtra("fishingObject", getFishingObject())
+        myIntent.putExtra("mode", FormModes.Adding)
+        this.startActivity(myIntent)
     }
 }
