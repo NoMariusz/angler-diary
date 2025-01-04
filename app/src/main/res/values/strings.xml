@@ -12,4 +12,5 @@
     <string name="menu_fish_species">Fish species</string>
     <string name="menu_fishing_trip">Fishing trips</string>
     <string name="menu_fishing_ground">Fishing grounds</string>
+    <string name="list_title_text">List</string>
 </resources>

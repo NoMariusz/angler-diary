@@ -1,5 +1,6 @@
 package com.example.angler_diary.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -14,5 +15,5 @@ interface FishSpeciesDao {
     suspend fun insertAll(fishSpecies: List<FishSpecies>)
 
     @Query("SELECT * FROM fish_species")
-    suspend fun getAll(): List<FishSpecies>
+    fun getAll(): LiveData<List<FishSpecies>>
 }

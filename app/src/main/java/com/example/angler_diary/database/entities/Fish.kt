@@ -31,4 +31,4 @@ data class Fish(
     val catchDate: Date = Date(),
     val fishingTripId: Int? = null,
     val points: Float? = null // Automatically calculated
-)
+): FishingObjectEntity

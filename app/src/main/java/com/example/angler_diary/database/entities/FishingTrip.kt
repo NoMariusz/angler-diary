@@ -21,4 +21,4 @@ data class FishingTrip(
     val endDate: Date? = null,
     val duration: Float = 0.0f, // Calculated, not manually editable
     val points: Float? = null // Automatically calculated
-)
+): FishingObjectEntity

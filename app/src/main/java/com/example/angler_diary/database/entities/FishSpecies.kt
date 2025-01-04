@@ -10,4 +10,4 @@ data class FishSpecies(
     val basePoints: Int = 100,
     val averageWeight: Float = 1000.0f, // Default in g
     val averageLength: Float = 30.0f // Default in cm
-)
+): FishingObjectEntity

@@ -1,5 +1,8 @@
 package com.example.angler_diary.ui.list
 
+import com.example.angler_diary.database.DatabaseViewModel
+
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,15 +11,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.angler_diary.FishingObjects
-import com.example.angler_diary.database.AppDatabase
 import com.example.angler_diary.databinding.FragmentListBinding
-import kotlinx.coroutines.launch
 
 class ListFragment : Fragment() {
 
     private var _binding: FragmentListBinding? = null
+    private lateinit var databaseViewModel: DatabaseViewModel
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -27,25 +28,18 @@ class ListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val listViewModel =
-            ViewModelProvider(this)[ListViewModel::class.java]
-
         _binding = FragmentListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textGallery
-        listViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        Log.d("ListFragment", "onCreateView called")
 
-        val fishingObject = arguments?.get("fishingObject") as FishingObjects?
-        listViewModel.updateText(fishingObject?.toString() ?: "There is no FishingObject")
+        databaseViewModel = ViewModelProvider(this)[DatabaseViewModel::class.java]
 
-        val db = AppDatabase.getInstance(requireContext(), lifecycleScope)
-        lifecycleScope.launch {
-            val species = db.fishSpeciesDao().getAll()
-            Log.d("ListFragment", "Database instance: $db, species: ${species.size}")
-        }
+        Log.d("ListFragment", "databaseViewModel crated")
+
+        loadTitle()
+        Log.d("ListFragment", "title loaded")
+        loadRecyclerView()
 
         return root
     }
@@ -53,5 +47,22 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun loadRecyclerView() {
+        val fishingObject = getFishingObject()
+        val listView = FishingObjectListViewFactory.create(databaseViewModel, fishingObject)
+        listView.prepareRecyclerView(binding.recyclerView, requireContext(), viewLifecycleOwner)
+    }
+
+    private fun loadTitle(){
+        val textView: TextView = binding.titleObjectName
+        val fishingObject = getFishingObject()
+        textView.text = fishingObject.name
+    }
+
+    private fun getFishingObject(): FishingObjects {
+        return (arguments?.get("fishingObject")
+            ?: throw Exception("No fishing object provided to ListFragment")) as FishingObjects
     }
 }
