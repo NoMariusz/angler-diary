@@ -4,14 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.R
 import com.example.angler_diary.database.entities.FishSpecies
 
-class FishSpeciesRecyclerViewAdapter(private var speciesList: List<FishSpecies>) :
-    FishingObjectListRecyclerViewAdapter<FishSpecies, FishSpeciesRecyclerViewAdapter.FishSpeciesViewHolder>() {
+class FishSpeciesRecyclerViewAdapter(
+    private var speciesList: List<FishSpecies>,
+    private val itemClickListener: ((Int, FishingObjects) -> Unit)
+) : FishingObjectListRecyclerViewAdapter<FishSpecies, FishSpeciesRecyclerViewAdapter.FishSpeciesViewHolder>() {
 
-    inner class FishSpeciesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FishSpeciesViewHolder(itemView: View) : FishingObjectListRecyclerViewViewHolder(
+        itemView,
+        { id -> itemClickListener(id, FishingObjects.FishSpecies) }) {
         val nameTextView: TextView = itemView.findViewById(R.id.textName)
         val basePointsTextView: TextView = itemView.findViewById(R.id.textBasePoints)
         val averageLengthTextView: TextView = itemView.findViewById(R.id.textAverageLength)
@@ -29,7 +33,11 @@ class FishSpeciesRecyclerViewAdapter(private var speciesList: List<FishSpecies>)
         return FishSpeciesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FishSpeciesViewHolder, position: Int) {
+    override fun setIdForHolder(holder: FishSpeciesViewHolder, position: Int) {
+        holder.id = speciesList[position].id
+    }
+
+    override fun bindDataToView(holder: FishSpeciesViewHolder, position: Int) {
         val species = speciesList[position]
         holder.nameTextView.text = species.name
         holder.basePointsTextView.text = "Base Points: ${species.basePoints}"

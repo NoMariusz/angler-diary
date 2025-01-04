@@ -2,17 +2,22 @@ package com.example.angler_diary.ui.list.views
 
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.FishingTripListSummary
 import com.example.angler_diary.ui.list.views.adapters.FishingTripRecyclerViewAdapter
 import com.example.angler_diary.ui.list.views.adapters.FishingObjectListRecyclerViewAdapter
+import com.example.angler_diary.ui.list.views.adapters.FishingObjectListRecyclerViewViewHolder
 
 class FishingTripListView(private val viewModel: DatabaseViewModel) :
     FishingObjectListView<FishingTripListSummary>(viewModel) {
 
-    override fun createAdapter(): FishingObjectListRecyclerViewAdapter<FishingTripListSummary, out RecyclerView.ViewHolder> {
+    override fun createAdapter(
+        itemClickListener: (Int, FishingObjects) -> Unit
+    ): FishingObjectListRecyclerViewAdapter<FishingTripListSummary, out FishingObjectListRecyclerViewViewHolder> {
         return FishingTripRecyclerViewAdapter(
-            getObjects().value ?: emptyList()
+            getObjects().value ?: emptyList(),
+            itemClickListener
         )
     }
 

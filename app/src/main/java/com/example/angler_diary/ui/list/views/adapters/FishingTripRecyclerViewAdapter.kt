@@ -4,14 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
+import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.R
 import com.example.angler_diary.database.entities.FishingTripListSummary
 
-class FishingTripRecyclerViewAdapter(private var tripList: List<FishingTripListSummary>) :
-    FishingObjectListRecyclerViewAdapter<FishingTripListSummary, FishingTripRecyclerViewAdapter.FishingTripViewHolder>() {
+class FishingTripRecyclerViewAdapter(
+    private var tripList: List<FishingTripListSummary>,
+    private val itemClickListener: ((Int, FishingObjects) -> Unit)
+) : FishingObjectListRecyclerViewAdapter<FishingTripListSummary, FishingTripRecyclerViewAdapter.FishingTripViewHolder>() {
 
-    inner class FishingTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FishingTripViewHolder(itemView: View) : FishingObjectListRecyclerViewViewHolder(
+        itemView,
+        { id -> itemClickListener(id, FishingObjects.FishingTrip) }) {
         val groundNameTextView: TextView = itemView.findViewById(R.id.textGroundName)
         val startDateTextView: TextView = itemView.findViewById(R.id.textStartDate)
         val endDateTextView: TextView = itemView.findViewById(R.id.textEndDate)
@@ -23,13 +27,17 @@ class FishingTripRecyclerViewAdapter(private var tripList: List<FishingTripListS
         notifyDataSetChanged()
     }
 
+    override fun setIdForHolder(holder: FishingTripViewHolder, position: Int) {
+        holder.id = tripList[position].id
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FishingTripViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_fishing_trip, parent, false)
         return FishingTripViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FishingTripViewHolder, position: Int) {
+    override fun bindDataToView(holder: FishingTripViewHolder, position: Int) {
         val trip = tripList[position]
         holder.groundNameTextView.text = trip.fishingGroundName
         holder.startDateTextView.text = "Start: ${trip.startDate}"

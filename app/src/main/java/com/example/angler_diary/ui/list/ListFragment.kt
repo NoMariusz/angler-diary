@@ -52,10 +52,16 @@ class ListFragment : Fragment() {
     private fun loadRecyclerView() {
         val fishingObject = getFishingObject()
         val listView = FishingObjectListViewFactory.create(databaseViewModel, fishingObject)
-        listView.prepareRecyclerView(binding.recyclerView, requireContext(), viewLifecycleOwner)
+        listView.prepareRecyclerView(
+            binding.recyclerView,
+            requireContext(),
+            viewLifecycleOwner
+        ) { id, fishingObjects ->
+            navToEditObjectForm(id, fishingObjects)
+        }
     }
 
-    private fun loadTitle(){
+    private fun loadTitle() {
         val textView: TextView = binding.titleObjectName
         val fishingObject = getFishingObject()
         textView.text = fishingObject.name
@@ -66,19 +72,30 @@ class ListFragment : Fragment() {
             ?: throw Exception("No fishing object provided to ListFragment")) as FishingObjects
     }
 
-    private fun connectAddObject(){
+    private fun connectAddObject() {
         binding.fab.setOnClickListener {
             navToAddObjectForm()
         }
     }
 
-    private fun navToAddObjectForm(){
+    private fun navToAddObjectForm() {
         val myIntent = Intent(
             requireContext(),
             FormActivity::class.java
         )
         myIntent.putExtra("fishingObject", getFishingObject())
         myIntent.putExtra("mode", FormModes.Adding)
+        this.startActivity(myIntent)
+    }
+
+    private fun navToEditObjectForm(id: Int, fishingObject: FishingObjects) {
+        val myIntent = Intent(
+            requireContext(),
+            FormActivity::class.java
+        )
+        myIntent.putExtra("fishingObject", fishingObject)
+        myIntent.putExtra("mode", FormModes.Editing)
+        myIntent.putExtra("id", id)
         this.startActivity(myIntent)
     }
 }
