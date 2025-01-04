@@ -15,6 +15,7 @@ class DatabaseViewModel(application: Application): AndroidViewModel(application)
     private val fishSpeciesDao = db.fishSpeciesDao()
     private val fishDao = db.fishDao()
 
-    val allFishSpecies: LiveData<List<FishSpecies>> = fishSpeciesDao.getAll()
-    val allFishesWithSpecies: LiveData<List<FishAndSpeciesName>> = fishDao.getAllWithSpecies()
+    val allFishSpecies = fishSpeciesDao.getAll()
+    val allFishesWithSpecies = fishDao.getAllWithSpecies()
+    val allFishingGrounds = fishingGroundDao.getAll()
 }
