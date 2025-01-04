@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.FishSpecies
-import com.example.angler_diary.ui.list.FishingObjectListView
 import com.example.angler_diary.ui.list.views.adapters.FishSpeciesRecyclerViewAdapter
 import com.example.angler_diary.ui.list.views.adapters.FishingObjectListRecyclerViewAdapter
 

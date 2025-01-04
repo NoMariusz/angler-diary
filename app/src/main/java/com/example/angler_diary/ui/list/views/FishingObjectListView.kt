@@ -1,4 +1,4 @@
-package com.example.angler_diary.ui.list
+package com.example.angler_diary.ui.list.views
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
