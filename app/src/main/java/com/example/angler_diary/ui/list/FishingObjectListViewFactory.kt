@@ -7,6 +7,7 @@ import com.example.angler_diary.ui.list.views.FishListView
 import com.example.angler_diary.ui.list.views.FishSpeciesListView
 import com.example.angler_diary.ui.list.views.FishingGroundListView
 import com.example.angler_diary.ui.list.views.FishingObjectListView
+import com.example.angler_diary.ui.list.views.FishingTripListView
 
 class FishingObjectListViewFactory {
     companion object {
@@ -18,7 +19,7 @@ class FishingObjectListViewFactory {
                 FishingObjects.Fish -> FishListView(viewModel)
                 FishingObjects.FishSpecies -> FishSpeciesListView(viewModel)
                 FishingObjects.FishingGround -> FishingGroundListView(viewModel)
-                FishingObjects.FishingTrip -> TODO()
+                FishingObjects.FishingTrip -> FishingTripListView(viewModel)
             }
         }
     }

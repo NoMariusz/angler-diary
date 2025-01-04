@@ -2,10 +2,7 @@ package com.example.angler_diary.database
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.angler_diary.database.entities.FishAndSpeciesName
-import com.example.angler_diary.database.entities.FishSpecies
 
 class DatabaseViewModel(application: Application): AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application, viewModelScope)
@@ -18,4 +15,5 @@ class DatabaseViewModel(application: Application): AndroidViewModel(application)
     val allFishSpecies = fishSpeciesDao.getAll()
     val allFishesWithSpecies = fishDao.getAllWithSpecies()
     val allFishingGrounds = fishingGroundDao.getAll()
+    val allFishingTripsForList = fishingTripDao.getTripsSummaryForList()
 }
