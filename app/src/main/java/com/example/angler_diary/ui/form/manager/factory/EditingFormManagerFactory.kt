@@ -5,6 +5,7 @@ import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
 import com.example.angler_diary.ui.form.FormManager
+import com.example.angler_diary.ui.form.manager.editing.FishEditFormManager
 import com.example.angler_diary.ui.form.manager.editing.FishingGroundEditFormManager
 import com.example.angler_diary.ui.form.manager.editing.FishingTripEditFormManager
 
@@ -21,7 +22,14 @@ class EditingFormManagerFactory : FormManagerFactory {
             throw Exception("Cannot create EditFormManager without id!")
 
         return when (fishingObjects) {
-            FishingObjects.Fish -> TODO()
+            FishingObjects.Fish -> FishEditFormManager(
+                id,
+                viewModel,
+                goBackCallback,
+                context,
+                binding
+            )
+
             FishingObjects.FishingTrip -> FishingTripEditFormManager(
                 id,
                 viewModel,

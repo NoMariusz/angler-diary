@@ -2,24 +2,35 @@ package com.example.angler_diary.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 import com.example.angler_diary.database.entities.Fish
 import com.example.angler_diary.database.entities.FishAndSpeciesName
 
 @Dao
 interface FishDao {
     @Insert
-    suspend fun insert(fish: Fish): Long
+    suspend fun insert(entity: Fish): Long
+
+    @Update
+    suspend fun update(entity: Fish)
+
+    @Delete
+    suspend fun delete(entity: Fish)
+
+    @Query("SELECT * FROM fish where id = :id")
+    suspend fun getById(id: Int): Fish?
 
     @Query("SELECT * FROM fish")
     fun getAll(): LiveData<List<Fish>>
 
     @Transaction
     @Query("""
-        SELECT *, fish_species.name as speciesName FROM fish 
-        inner join fish_species on fish.speciesId = fish_species.id
+        SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.points, fs.name as speciesName FROM fish f
+        inner join fish_species fs on f.speciesId = fs.id
     """)
     fun getAllWithSpecies(): LiveData<List<FishAndSpeciesName>>
 }
