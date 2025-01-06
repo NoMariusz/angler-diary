@@ -69,11 +69,12 @@ class FormFragment : Fragment() {
                 getObjectId(),
                 getFishingObject(),
                 databaseViewModel,
-                requireContext()
+                requireContext(),
+                binding
             ) { -> activity?.finish() }
 
-        manager.initialiseInputs(binding.inputsRoot)
-        manager.initialiseActions(binding.actionsRoot)
+        manager.initialiseInputs()
+        manager.initialiseActions()
     }
 
     private fun getFormManagerFactory(): FormManagerFactory {

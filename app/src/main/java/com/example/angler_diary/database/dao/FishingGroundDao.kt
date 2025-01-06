@@ -13,4 +13,10 @@ interface FishingGroundDao {
 
     @Query("SELECT * FROM fishing_ground")
     fun getAll(): LiveData<List<FishingGround>>
+
+    @Query("SELECT * FROM fishing_ground")
+    suspend fun getAllSuspend(): List<FishingGround>
+
+    @Query("SELECT * FROM fishing_ground where id = :groundId")
+    suspend fun getWithId(groundId: Int): FishingGround?
 }

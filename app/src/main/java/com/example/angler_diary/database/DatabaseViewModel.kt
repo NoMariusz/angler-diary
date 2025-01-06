@@ -7,9 +7,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.angler_diary.database.entities.FishingGround
+import com.example.angler_diary.database.entities.FishingTrip
 import kotlinx.coroutines.launch
 
-class DatabaseViewModel(application: Application): AndroidViewModel(application) {
+class DatabaseViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application, viewModelScope)
 
     private val fishingGroundDao = db.fishingGroundDao()
@@ -21,13 +22,23 @@ class DatabaseViewModel(application: Application): AndroidViewModel(application)
 
     val allFishesWithSpecies = fishDao.getAllWithSpecies()
 
-    val allFishingGrounds: LiveData<List<FishingGround>> = fishingGroundDao.getAll()
+    val allFishingGrounds = fishingGroundDao.getAll()
 
     val allFishingTripsForList = fishingTripDao.getTripsSummaryForList()
 
-    fun insertFishingGround(fishingGround: FishingGround) {
-        viewModelScope.launch {
-            fishingGroundDao.insert(fishingGround)
-        }
+    suspend fun insert(entity: FishingGround) {
+        fishingGroundDao.insert(entity)
+    }
+
+    suspend fun insert(entity: FishingTrip) {
+        fishingTripDao.insert(entity)
+    }
+
+    suspend fun ifGroundExists(id: Int): Boolean {
+        return fishingGroundDao.getWithId(id) != null
+    }
+
+    suspend fun getAllGrounds(): List<FishingGround> {
+        return fishingGroundDao.getAllSuspend()
     }
 }

@@ -3,7 +3,7 @@ package com.example.angler_diary.ui.form.manager.common
 import android.content.Context
 import android.view.ViewGroup
 import com.example.angler_diary.database.entities.FishingGround
-import com.example.angler_diary.ui.form.InputsController
+import com.example.angler_diary.ui.form.inputs.InputsController
 
 class FishingGroundFormManagerCommon(private val context: Context) {
     private lateinit var inputsController: InputsController
@@ -17,7 +17,7 @@ class FishingGroundFormManagerCommon(private val context: Context) {
     fun getObjectWithActualState(): FishingGround {
         return FishingGround(
             0,
-            inputsController.getValue("name")
+            inputsController.getString("name")
                 ?: throw Exception("Cannot get value for FishingGround 'name'")
         )
     }

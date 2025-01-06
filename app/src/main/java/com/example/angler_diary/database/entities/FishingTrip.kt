@@ -19,6 +19,11 @@ data class FishingTrip(
     val fishingGroundId: Int,
     val startDate: Date = Date(),
     val endDate: Date? = null,
-    val duration: Float = 0.0f, // Calculated, not manually editable
     val points: Float? = null // Automatically calculated
-): FishingObjectEntity
+): FishingObjectEntity {
+    val duration: Float
+        get() = endDate?.let {
+            val diffInMillis = it.time - startDate.time
+            diffInMillis / (1000 * 60 * 60).toFloat() // Convert to hours
+        } ?: 0.0f
+}

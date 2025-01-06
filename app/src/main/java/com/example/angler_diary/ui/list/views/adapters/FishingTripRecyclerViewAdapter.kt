@@ -41,7 +41,7 @@ class FishingTripRecyclerViewAdapter(
         val trip = tripList[position]
         holder.groundNameTextView.text = trip.fishingGroundName
         holder.startDateTextView.text = "Start: ${trip.startDate}"
-        holder.endDateTextView.text = trip.endDate.let { "End: $it" } ?: "Ongoing"
+        holder.endDateTextView.text = trip.endDate?.let { "End: $it" } ?: "Ongoing"
         holder.pointsTextView.text = "FScore: ${trip.points}"
     }
 

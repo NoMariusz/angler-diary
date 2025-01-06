@@ -4,10 +4,9 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.logic.form.FormActionResult
 
 abstract class FormActionHandler(
-    protected val viewModel: DatabaseViewModel,
-    private val goBackCallback: () -> Unit
+    protected val viewModel: DatabaseViewModel
 ) {
-    fun execute(): FormActionResult {
+    suspend fun execute(): FormActionResult {
         val validationResult = validate()
         if (!validationResult.success) return validationResult
 
@@ -17,11 +16,10 @@ abstract class FormActionHandler(
         val saveNewFScoreResult = saveNewFScore()
         if (!saveNewFScoreResult.success) return saveNewFScoreResult
 
-        goBackCallback()
         return FormActionResult(true, null)
     }
 
-    abstract fun validate(): FormActionResult
-    abstract fun perform(): FormActionResult
-    abstract fun saveNewFScore(): FormActionResult
+    abstract suspend fun validate(): FormActionResult
+    abstract suspend fun perform(): FormActionResult
+    abstract suspend fun saveNewFScore(): FormActionResult
 }
