@@ -26,7 +26,7 @@ data class Fish(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val speciesId: Int,
     val image: String? = null,
-    val weight: Float? = null, // In kg
+    val weight: Float? = null, // In g
     val length: Float? = null, // In cm
     val catchDate: Date = Date(),
     val fishingTripId: Int? = null,
