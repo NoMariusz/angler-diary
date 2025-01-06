@@ -6,6 +6,7 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
 import com.example.angler_diary.ui.form.FormManager
 import com.example.angler_diary.ui.form.manager.editing.FishEditFormManager
+import com.example.angler_diary.ui.form.manager.editing.FishSpeciesEditFormManager
 import com.example.angler_diary.ui.form.manager.editing.FishingGroundEditFormManager
 import com.example.angler_diary.ui.form.manager.editing.FishingTripEditFormManager
 
@@ -38,7 +39,14 @@ class EditingFormManagerFactory : FormManagerFactory {
                 binding
             )
 
-            FishingObjects.FishSpecies -> TODO()
+            FishingObjects.FishSpecies -> FishSpeciesEditFormManager(
+                id,
+                viewModel,
+                goBackCallback,
+                context,
+                binding
+            )
+
             FishingObjects.FishingGround -> FishingGroundEditFormManager(
                 id,
                 viewModel,

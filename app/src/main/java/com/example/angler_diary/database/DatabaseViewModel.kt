@@ -58,6 +58,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishDao.update(entity)
     }
 
+    suspend fun update(entity: FishSpecies) {
+        fishSpeciesDao.update(entity)
+    }
+
     suspend fun delete(entity: FishingTrip) {
         fishingTripDao.delete(entity)
     }
@@ -70,6 +74,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishDao.delete(entity)
     }
 
+    suspend fun delete(entity: FishSpecies) {
+        fishSpeciesDao.delete(entity)
+    }
+
     suspend fun getFishingTripById(id: Int): FishingTrip? {
         return fishingTripDao.getById(id)
     }
@@ -80,6 +88,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     suspend fun getFishById(id: Int): Fish? {
         return fishDao.getById(id)
+    }
+
+    suspend fun getFishSpeciesById(id: Int): FishSpecies? {
+        return fishSpeciesDao.getById(id)
     }
 
     suspend fun ifGroundExists(id: Int): Boolean {

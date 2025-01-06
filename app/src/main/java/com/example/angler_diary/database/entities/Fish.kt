@@ -12,7 +12,7 @@ import java.util.Date
             entity = FishSpecies::class,
             parentColumns = ["id"],
             childColumns = ["speciesId"],
-            onDelete = ForeignKey.CASCADE
+            onDelete = ForeignKey.RESTRICT
         ),
         ForeignKey(
             entity = FishingTrip::class,

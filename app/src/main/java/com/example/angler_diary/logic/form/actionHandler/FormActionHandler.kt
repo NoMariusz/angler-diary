@@ -1,5 +1,6 @@
 package com.example.angler_diary.logic.form.actionHandler
 
+import android.database.sqlite.SQLiteConstraintException
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.logic.form.FormActionResult
 
@@ -12,9 +13,15 @@ abstract class FormActionHandler(
 
         try {
             perform()
+        } catch (e: SQLiteConstraintException) {
+            return FormActionResult(
+                false,
+                "Cannot delete this object unless other object have relation to him"
+            )
         } catch (e: Exception) {
             return FormActionResult(false, e.message)
         }
+
 
         val saveNewFScoreResult = saveNewFScore()
         if (!saveNewFScoreResult.success) return saveNewFScoreResult
