@@ -85,6 +85,7 @@
                 android:textColor="?attr/colorError"
                 android:textSize="20sp"
                 android:visibility="gone"
+                app:strokeColor="?attr/colorError"
                 tools:visibility="visible" />
         </LinearLayout>
 
