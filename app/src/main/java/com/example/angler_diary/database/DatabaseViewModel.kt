@@ -42,6 +42,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishDao.insert(entity)
     }
 
+    suspend fun insert(entity: FishSpecies) {
+        fishSpeciesDao.insert(entity)
+    }
+
     suspend fun update(entity: FishingTrip) {
         fishingTripDao.update(entity)
     }

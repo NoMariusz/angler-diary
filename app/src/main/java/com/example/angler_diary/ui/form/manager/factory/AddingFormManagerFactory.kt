@@ -6,6 +6,7 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
 import com.example.angler_diary.ui.form.FormManager
 import com.example.angler_diary.ui.form.manager.adding.FishAddFormManager
+import com.example.angler_diary.ui.form.manager.adding.FishSpeciesAddFormManager
 import com.example.angler_diary.ui.form.manager.adding.FishingGroundAddFormManager
 import com.example.angler_diary.ui.form.manager.adding.FishingTripAddFormManager
 
@@ -33,7 +34,13 @@ class AddingFormManagerFactory : FormManagerFactory {
                 binding
             )
 
-            FishingObjects.FishSpecies -> TODO()
+            FishingObjects.FishSpecies -> FishSpeciesAddFormManager(
+                viewModel,
+                goBackCallback,
+                context,
+                binding
+            )
+
             FishingObjects.FishingGround -> FishingGroundAddFormManager(
                 viewModel,
                 goBackCallback,

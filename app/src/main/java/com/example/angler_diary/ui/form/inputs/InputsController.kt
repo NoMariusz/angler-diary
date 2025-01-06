@@ -61,7 +61,15 @@ class InputsController(
 
     fun create(name: String, label: String, value: Float?) {
         val input = createEditText(name, label, value?.toString() ?: "")
-        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
+
+        inputs[name] = input
+        createField(input, label)
+    }
+
+    fun create(name: String, label: String, value: Int?) {
+        val input = createEditText(name, label, value?.toString() ?: "")
+        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER
 
         inputs[name] = input
         createField(input, label)
