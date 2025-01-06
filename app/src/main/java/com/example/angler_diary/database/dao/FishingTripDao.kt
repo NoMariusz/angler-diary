@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.database.entities.FishingTripListSummary
 
@@ -11,6 +12,9 @@ import com.example.angler_diary.database.entities.FishingTripListSummary
 interface FishingTripDao {
     @Insert
     suspend fun insert(fishingTrip: FishingTrip): Long
+
+    @Update
+    fun update(fishingTrip: FishingTrip)
 
     @Query("""
         SELECT *, fishing_ground.name as fishingGroundName FROM fishing_trip

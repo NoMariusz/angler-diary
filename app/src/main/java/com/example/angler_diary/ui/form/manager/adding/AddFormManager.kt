@@ -9,7 +9,7 @@ import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
 import com.example.angler_diary.ui.form.FormManager
 
 
-abstract class AddingFormManager(
+abstract class AddFormManager(
     protected val viewModel: DatabaseViewModel,
     goBackCallback: () -> Unit,
     context: Context,

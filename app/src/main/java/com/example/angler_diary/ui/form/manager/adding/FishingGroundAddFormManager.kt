@@ -13,7 +13,7 @@ class FishingGroundAddFormManager(
     goBackCallback: () -> Unit,
     context: Context,
     binding: FragmentFormBinding,
-) : AddingFormManager(viewModel, goBackCallback, context, binding) {
+) : AddFormManager(viewModel, goBackCallback, context, binding) {
     private val formManagerCommon = FishingGroundFormManagerCommon(context)
 
     override fun createAddActionHandler(): FormActionHandler {

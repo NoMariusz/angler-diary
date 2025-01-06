@@ -34,6 +34,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishingTripDao.insert(entity)
     }
 
+    suspend fun update(entity: FishingTrip) {
+        fishingTripDao.update(entity)
+    }
+
     suspend fun ifGroundExists(id: Int): Boolean {
         return fishingGroundDao.getWithId(id) != null
     }
