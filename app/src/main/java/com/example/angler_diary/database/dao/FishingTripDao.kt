@@ -32,7 +32,7 @@ interface FishingTripDao {
     suspend fun getAllSummarySuspend(): List<FishingTripSummary>
 
     @Query("""
-        SELECT ft.id, ft.startDate, ft.endDate, ft.points, fishing_ground.name as fishingGroundName FROM fishing_trip ft
+        SELECT ft.id, ft.startDate, ft.endDate, ft.score, fishing_ground.name as fishingGroundName FROM fishing_trip ft
         inner join fishing_ground on ft.fishingGroundId = fishing_ground.id
     """)
     fun getTripsSummaryForList(): LiveData<List<FishingTripListSummary>>

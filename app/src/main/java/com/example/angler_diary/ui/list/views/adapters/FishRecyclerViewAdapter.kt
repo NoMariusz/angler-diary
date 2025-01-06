@@ -44,7 +44,7 @@ class FishRecyclerViewAdapter(
         holder.weightTextView.text = "Weight(g): ${fish.weight ?: "N/A"}"
         holder.lengthTextView.text = "Length(cm): ${fish.length ?: "N/A"}"
         holder.dateTextView.text = "Caught on: ${fish.catchDate}"
-        holder.pointsTextView.text = "FScore: ${fish.points ?: "N/A"}"
+        holder.pointsTextView.text = "FScore: ${fish.score ?: "N/A"}"
     }
 
     override fun getItemCount() = fishList.size

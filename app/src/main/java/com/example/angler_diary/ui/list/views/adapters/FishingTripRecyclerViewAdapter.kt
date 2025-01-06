@@ -42,7 +42,7 @@ class FishingTripRecyclerViewAdapter(
         holder.groundNameTextView.text = trip.fishingGroundName
         holder.startDateTextView.text = "Start: ${trip.startDate}"
         holder.endDateTextView.text = trip.endDate?.let { "End: $it" } ?: "Ongoing"
-        holder.pointsTextView.text = "FScore: ${trip.points}"
+        holder.pointsTextView.text = "FScore: ${trip.score}"
     }
 
     override fun getItemCount() = tripList.size

@@ -29,7 +29,7 @@ interface FishDao {
 
     @Transaction
     @Query("""
-        SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.points, fs.name as speciesName FROM fish f
+        SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.score, fs.name as speciesName FROM fish f
         inner join fish_species fs on f.speciesId = fs.id
     """)
     fun getAllWithSpecies(): LiveData<List<FishAndSpeciesName>>

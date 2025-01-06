@@ -8,6 +8,6 @@ data class FishAndSpeciesName(
     val weight: Float?,
     val length: Float? ,
     val catchDate: Date,
-    val points: Float?,
+    val score: Float,
     val speciesName: String
 ): FishingObjectEntity

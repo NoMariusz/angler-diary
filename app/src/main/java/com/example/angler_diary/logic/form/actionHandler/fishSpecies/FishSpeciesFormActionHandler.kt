@@ -14,8 +14,8 @@ abstract class FishSpeciesFormActionHandler(
             return FormActionResult(false, "name cannot be empty")
         }
 
-        if (entity.basePoints < 0) {
-            return FormActionResult(false, "Base points cannot be negative")
+        if (entity.baseScore < 0) {
+            return FormActionResult(false, "Base score cannot be negative")
         }
 
         if (entity.averageLength < 0) {

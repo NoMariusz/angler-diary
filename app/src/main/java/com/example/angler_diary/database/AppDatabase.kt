@@ -55,10 +55,10 @@ abstract class AppDatabase : RoomDatabase() {
 
         private fun getDefaultFishSpecies(): List<FishSpecies> {
             return listOf(
-                FishSpecies(name = "Karp", basePoints = 100, averageWeight = 2000f, averageLength = 45f),
-                FishSpecies(name = "Karaś", basePoints = 2, averageWeight = 250f, averageLength = 25f),
-                FishSpecies(name = "Leszcz", basePoints = 20, averageWeight = 1000f, averageLength = 30f),
-                FishSpecies(name = "Płoć", basePoints = 2, averageWeight = 150f, averageLength = 20f)
+                FishSpecies(name = "Karp", baseScore = 100, averageWeight = 2000f, averageLength = 45f),
+                FishSpecies(name = "Karaś", baseScore = 2, averageWeight = 250f, averageLength = 25f),
+                FishSpecies(name = "Leszcz", baseScore = 20, averageWeight = 1000f, averageLength = 30f),
+                FishSpecies(name = "Płoć", baseScore = 2, averageWeight = 150f, averageLength = 20f)
             )
         }
     }

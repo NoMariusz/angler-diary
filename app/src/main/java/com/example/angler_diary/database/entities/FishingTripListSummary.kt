@@ -7,5 +7,5 @@ data class FishingTripListSummary(
     val fishingGroundName: String,
     val startDate: Date,
     val endDate: Date?,
-    val points: Float?
+    val score: Float?
 ): FishingObjectEntity

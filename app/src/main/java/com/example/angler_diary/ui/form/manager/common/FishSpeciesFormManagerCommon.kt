@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.ViewGroup
 import com.example.angler_diary.DEFAULT_FISH_SPECIES_AVERAGE_LENGTH
 import com.example.angler_diary.DEFAULT_FISH_SPECIES_AVERAGE_WEIGHT
-import com.example.angler_diary.DEFAULT_FISH_SPECIES_BASE_POINTS
+import com.example.angler_diary.DEFAULT_FISH_SPECIES_BASE_SCORE
 import com.example.angler_diary.database.entities.FishSpecies
 import com.example.angler_diary.ui.form.inputs.InputsController
 
@@ -18,7 +18,7 @@ class FishSpeciesFormManagerCommon(private val context: Context) : FormManagerCo
         inputsController = InputsController(view, context)
 
         inputsController.create("name", "Name: ", default?.name)
-        inputsController.create("basePoints", "Base points: ", default?.basePoints)
+        inputsController.create("baseScore", "Base FScore: ", default?.baseScore)
         inputsController.create("averageWeight", "Average weight(g): ", default?.averageWeight)
         inputsController.create("averageLength", "Average length(cm): ", default?.averageLength)
     }
@@ -28,7 +28,7 @@ class FishSpeciesFormManagerCommon(private val context: Context) : FormManagerCo
             id,
             inputsController.getString("name") ?: throw Exception("Cannot get value for FishingGround 'name'"),
             null,
-            inputsController.getInt("basePoints") ?: DEFAULT_FISH_SPECIES_BASE_POINTS,
+            inputsController.getInt("baseScore") ?: DEFAULT_FISH_SPECIES_BASE_SCORE,
             inputsController.getFloat("averageWeight") ?: DEFAULT_FISH_SPECIES_AVERAGE_WEIGHT,
             inputsController.getFloat("averageLength") ?: DEFAULT_FISH_SPECIES_AVERAGE_LENGTH,
         )

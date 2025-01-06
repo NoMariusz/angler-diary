@@ -3,6 +3,8 @@ package com.example.angler_diary.database.entities
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.example.angler_diary.logic.form.score.EntityWithFScore
+import com.example.angler_diary.logic.form.score.FScoreVisitor
 import java.util.Date
 
 @Entity(
@@ -30,5 +32,9 @@ data class Fish(
     val length: Float? = null, // In cm
     val catchDate: Date = Date(),
     val fishingTripId: Int? = null,
-    val points: Float? = null // Automatically calculated
-): FishingObjectEntity
+    var score: Float = 0f // Automatically calculated
+): FishingObjectEntity, EntityWithFScore{
+    override suspend fun accept(visitor: FScoreVisitor): Float {
+        return visitor.visitFish(this)
+    }
+}

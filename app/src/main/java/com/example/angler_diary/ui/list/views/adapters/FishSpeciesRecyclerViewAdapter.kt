@@ -40,7 +40,7 @@ class FishSpeciesRecyclerViewAdapter(
     override fun bindDataToView(holder: FishSpeciesViewHolder, position: Int) {
         val species = speciesList[position]
         holder.nameTextView.text = species.name
-        holder.basePointsTextView.text = "Base Points: ${species.basePoints}"
+        holder.basePointsTextView.text = "Base FScore: ${species.baseScore}"
         holder.averageLengthTextView.text = "Average Length(cm): ${species.averageLength}"
         holder.averageWeightTextView.text = "Average Weight(g): ${species.averageWeight}"
     }
