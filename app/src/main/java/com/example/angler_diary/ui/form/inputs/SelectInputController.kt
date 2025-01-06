@@ -30,7 +30,7 @@ class SelectInputController(private val context: Context) {
         input.width = ViewGroup.LayoutParams.MATCH_PARENT
         input.visibility = View.GONE
         // set default value
-        input.setText(value.toString())
+        value?.let { input.setText(it.toString()) }
 
         inputsRoot.addView(input)
 

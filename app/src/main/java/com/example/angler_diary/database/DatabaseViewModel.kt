@@ -6,8 +6,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.angler_diary.database.entities.Fish
+import com.example.angler_diary.database.entities.FishSpecies
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
+import com.example.angler_diary.database.entities.FishingTripListSummary
+import com.example.angler_diary.database.entities.FishingTripSummary
 import kotlinx.coroutines.launch
 
 class DatabaseViewModel(application: Application) : AndroidViewModel(application) {
@@ -32,6 +36,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     suspend fun insert(entity: FishingTrip) {
         fishingTripDao.insert(entity)
+    }
+
+    suspend fun insert(entity: Fish) {
+        fishDao.insert(entity)
     }
 
     suspend fun update(entity: FishingTrip) {
@@ -62,7 +70,23 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         return fishingGroundDao.getById(id) != null
     }
 
+    suspend fun ifTripExists(id: Int): Boolean {
+        return fishingTripDao.getById(id) != null
+    }
+
+    suspend fun ifFishSpeciesExists(id: Int): Boolean {
+        return fishSpeciesDao.getById(id) != null
+    }
+
     suspend fun getAllGrounds(): List<FishingGround> {
         return fishingGroundDao.getAllSuspend()
+    }
+
+    suspend fun getAllTripsSummary(): List<FishingTripSummary> {
+        return fishingTripDao.getAllSummarySuspend()
+    }
+
+    suspend fun getAllFishSpecies(): List<FishSpecies> {
+        return fishSpeciesDao.getAllSuspend()
     }
 }

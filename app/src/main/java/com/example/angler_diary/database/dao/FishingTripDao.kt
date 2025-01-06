@@ -9,6 +9,7 @@ import androidx.room.Update
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.database.entities.FishingTripListSummary
+import com.example.angler_diary.database.entities.FishingTripSummary
 
 @Dao
 interface FishingTripDao {
@@ -23,6 +24,12 @@ interface FishingTripDao {
 
     @Query("SELECT * FROM fishing_trip where id = :id")
     suspend fun getById(id: Int): FishingTrip?
+
+    @Query("""
+        SELECT ft.id, ft.startDate, fishing_ground.name as fishingGroundName FROM fishing_trip ft
+        inner join fishing_ground on ft.fishingGroundId = fishing_ground.id
+    """)
+    suspend fun getAllSummarySuspend(): List<FishingTripSummary>
 
     @Query("""
         SELECT ft.id, ft.startDate, ft.endDate, ft.points, fishing_ground.name as fishingGroundName FROM fishing_trip ft
