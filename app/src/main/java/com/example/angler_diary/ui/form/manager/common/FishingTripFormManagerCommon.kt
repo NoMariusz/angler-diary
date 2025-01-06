@@ -9,7 +9,7 @@ import com.example.angler_diary.ui.form.inputs.InputsController
 import com.example.angler_diary.ui.form.inputs.RelationOption
 import java.util.Date
 
-class FishingTripFormManagerCommon(private val context: Context) {
+class FishingTripFormManagerCommon(private val context: Context): FormManagerCommon<FishingTrip> {
     private lateinit var inputsController: InputsController
 
     fun initialiseInputs(
@@ -29,9 +29,9 @@ class FishingTripFormManagerCommon(private val context: Context) {
         inputsController.create("end", "End date: ", default?.endDate)
     }
 
-    fun getObjectWithActualState(): FishingTrip {
+    override fun getObjectWithActualState(id: Int): FishingTrip {
         return FishingTrip(
-            0,
+            id,
             inputsController.getInt("ground")
                 ?: EMPTY_ID,
             inputsController.getDate("start") ?: Date(),

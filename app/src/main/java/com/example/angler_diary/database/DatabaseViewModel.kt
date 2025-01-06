@@ -38,8 +38,16 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishingTripDao.update(entity)
     }
 
+    suspend fun delete(entity: FishingTrip) {
+        return fishingTripDao.delete(entity)
+    }
+
+    suspend fun getById(id: Int): FishingTrip? {
+        return fishingTripDao.getById(id)
+    }
+
     suspend fun ifGroundExists(id: Int): Boolean {
-        return fishingGroundDao.getWithId(id) != null
+        return fishingGroundDao.getById(id) != null
     }
 
     suspend fun getAllGrounds(): List<FishingGround> {

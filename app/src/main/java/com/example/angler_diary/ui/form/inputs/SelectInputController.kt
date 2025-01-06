@@ -2,16 +2,12 @@ package com.example.angler_diary.ui.form.inputs
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import androidx.core.content.ContextCompat
-import com.example.angler_diary.R
+import android.widget.TextView
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 
 
@@ -26,7 +22,6 @@ class SelectInputController(private val context: Context) {
         // set inputsRoot LinearLayout width
         inputsRoot.layoutParams =
             LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-//        inputsRoot.background = ContextCompat.getDrawable(context, R.drawable.side_nav_bar)
         inputsRoot.orientation = LinearLayout.VERTICAL
 
 
@@ -34,6 +29,8 @@ class SelectInputController(private val context: Context) {
         val input = EditText(context)
         input.width = ViewGroup.LayoutParams.MATCH_PARENT
         input.visibility = View.GONE
+        // set default value
+        input.setText(value.toString())
 
         inputsRoot.addView(input)
 
@@ -42,7 +39,7 @@ class SelectInputController(private val context: Context) {
         val autoCompleteTextView = MaterialAutoCompleteTextView(context)
 
         // Map options to a list of display texts
-        val optionsMap = options.associateBy { it.id } // Map of id -> RelationOption
+        val optionsMap = options.associateBy { it.id } // Map of text -> RelationOption
         val displayOptions = options.map { it.text }  // List of option texts
 
         // Pre-select the current value if it exists in options
@@ -54,10 +51,8 @@ class SelectInputController(private val context: Context) {
         autoCompleteTextView.setAdapter(adapter)
 
         // Set a listener to handle selection changes
-        autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-            val selectedText = displayOptions[position]
-            val selectedId = options.first { it.text == selectedText }.id
-            // You can save or process the selected ID here
+        autoCompleteTextView.setOnItemClickListener { _, view, _, _ ->
+            val selectedId = options.first { it.text == (view as TextView).text }.id
             input.setText(selectedId.toString())
         }
 

@@ -1,8 +1,12 @@
 package com.example.angler_diary.database.entities
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "fish_species")
+@Entity(tableName = "fish_species", indices = [Index(
+    value = ["name"],
+    unique = true
+)])
 data class FishSpecies(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,

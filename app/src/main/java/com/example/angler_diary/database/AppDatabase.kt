@@ -5,6 +5,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.angler_diary.database.converters.DateConverter
 import com.example.angler_diary.database.entities.*

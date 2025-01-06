@@ -2,10 +2,11 @@ package com.example.angler_diary.ui.form.manager.common
 
 import android.content.Context
 import android.view.ViewGroup
+import com.example.angler_diary.EMPTY_ID
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.ui.form.inputs.InputsController
 
-class FishingGroundFormManagerCommon(private val context: Context) {
+class FishingGroundFormManagerCommon(private val context: Context): FormManagerCommon<FishingGround> {
     private lateinit var inputsController: InputsController
 
     fun initialiseInputs(view: ViewGroup, default: FishingGround?) {
@@ -14,9 +15,9 @@ class FishingGroundFormManagerCommon(private val context: Context) {
         inputsController.create("name", "Name: ", default?.name)
     }
 
-    fun getObjectWithActualState(): FishingGround {
+    override fun getObjectWithActualState(id: Int): FishingGround {
         return FishingGround(
-            0,
+            id,
             inputsController.getString("name")
                 ?: throw Exception("Cannot get value for FishingGround 'name'")
         )

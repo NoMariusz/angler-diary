@@ -15,7 +15,7 @@ import java.util.Date
     )]
 )
 data class FishingTrip(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val fishingGroundId: Int,
     val startDate: Date = Date(),
     val endDate: Date? = null,
