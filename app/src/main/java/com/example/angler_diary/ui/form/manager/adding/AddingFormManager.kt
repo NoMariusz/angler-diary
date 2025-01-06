@@ -5,7 +5,7 @@ import android.view.View
 import com.example.angler_diary.R
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
-import com.example.angler_diary.logic.form.actionHandler.add.FormActionAddHandler
+import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
 import com.example.angler_diary.ui.form.FormManager
 
 
@@ -19,7 +19,7 @@ abstract class AddingFormManager(
         createAddAction(root)
     }
 
-    abstract fun createAddActionHandler(): FormActionAddHandler
+    abstract fun createAddActionHandler(): FormActionHandler
 
     private fun createAddAction(root: View){
         val btn = root.findViewById<View>(R.id.saveBtn)

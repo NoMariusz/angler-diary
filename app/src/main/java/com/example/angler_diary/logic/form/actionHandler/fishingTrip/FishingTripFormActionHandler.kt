@@ -1,13 +1,14 @@
-package com.example.angler_diary.logic.form.actionHandler.add
+package com.example.angler_diary.logic.form.actionHandler.fishingTrip
 
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.logic.form.FormActionResult
+import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
 
-class FishingTripFormActionAddHandler(
+abstract class FishingTripFormActionHandler(
     viewModel: DatabaseViewModel,
-    private val entity: FishingTrip
-) : FormActionAddHandler(viewModel) {
+    protected val entity: FishingTrip
+) : FormActionHandler(viewModel) {
     override suspend fun validate(): FormActionResult {
         if (!viewModel.ifGroundExists(entity.fishingGroundId)) {
             return FormActionResult(false, "Ground with selected id does not exists")
@@ -18,10 +19,6 @@ class FishingTripFormActionAddHandler(
         }
 
         return FormActionResult(true, null)
-    }
-
-    override suspend fun performInsert() {
-        viewModel.insert(entity)
     }
 
     override suspend fun saveNewFScore(): FormActionResult {

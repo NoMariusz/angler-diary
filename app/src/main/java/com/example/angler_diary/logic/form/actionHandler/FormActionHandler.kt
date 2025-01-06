@@ -10,8 +10,11 @@ abstract class FormActionHandler(
         val validationResult = validate()
         if (!validationResult.success) return validationResult
 
-        val performResult = perform()
-        if (!performResult.success) return performResult
+        try {
+            perform()
+        } catch (e: Exception) {
+            return FormActionResult(false, e.message)
+        }
 
         val saveNewFScoreResult = saveNewFScore()
         if (!saveNewFScoreResult.success) return saveNewFScoreResult
@@ -20,6 +23,6 @@ abstract class FormActionHandler(
     }
 
     abstract suspend fun validate(): FormActionResult
-    abstract suspend fun perform(): FormActionResult
+    abstract suspend fun perform()
     abstract suspend fun saveNewFScore(): FormActionResult
 }

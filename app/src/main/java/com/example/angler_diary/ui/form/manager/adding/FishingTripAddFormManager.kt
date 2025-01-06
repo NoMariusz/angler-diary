@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.ViewGroup
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
-import com.example.angler_diary.logic.form.actionHandler.add.FishingTripFormActionAddHandler
-import com.example.angler_diary.logic.form.actionHandler.add.FormActionAddHandler
+import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
+import com.example.angler_diary.logic.form.actionHandler.fishingTrip.FishingTripFormActionAddHandler
 import com.example.angler_diary.ui.form.manager.common.FishingTripFormManagerCommon
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -18,7 +18,7 @@ class FishingTripAddFormManager(
 ) : AddingFormManager(viewModel, goBackCallback, context, binding) {
     private val formManagerCommon = FishingTripFormManagerCommon(context)
 
-    override fun createAddActionHandler(): FormActionAddHandler {
+    override fun createAddActionHandler(): FormActionHandler {
         return FishingTripFormActionAddHandler(
             viewModel, formManagerCommon.getObjectWithActualState()
         )

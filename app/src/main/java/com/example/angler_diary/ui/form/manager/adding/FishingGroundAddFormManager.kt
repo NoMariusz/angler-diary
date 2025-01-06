@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.ViewGroup
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
-import com.example.angler_diary.logic.form.actionHandler.add.FishingGroundFormActionAddHandler
-import com.example.angler_diary.logic.form.actionHandler.add.FormActionAddHandler
+import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
+import com.example.angler_diary.logic.form.actionHandler.fishingGround.FishingGroundFormActionAddHandler
 import com.example.angler_diary.ui.form.manager.common.FishingGroundFormManagerCommon
 
 class FishingGroundAddFormManager(
@@ -16,7 +16,7 @@ class FishingGroundAddFormManager(
 ) : AddingFormManager(viewModel, goBackCallback, context, binding) {
     private val formManagerCommon = FishingGroundFormManagerCommon(context)
 
-    override fun createAddActionHandler(): FormActionAddHandler {
+    override fun createAddActionHandler(): FormActionHandler {
         return FishingGroundFormActionAddHandler(
             viewModel,
             formManagerCommon.getObjectWithActualState()
