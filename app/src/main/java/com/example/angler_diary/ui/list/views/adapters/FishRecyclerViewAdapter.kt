@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
 import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.R
+import com.example.angler_diary.database.converters.DateConverter
 import com.example.angler_diary.database.entities.FishAndSpeciesName
 
 class FishRecyclerViewAdapter(
@@ -41,10 +41,12 @@ class FishRecyclerViewAdapter(
     override fun bindDataToView(holder: FishViewHolder, position: Int) {
         val fish = fishList[position]
         holder.nameTextView.text = fish.speciesName
-        holder.weightTextView.text = "Weight(g): ${fish.weight ?: "N/A"}"
-        holder.lengthTextView.text = "Length(cm): ${fish.length ?: "N/A"}"
-        holder.dateTextView.text = "Caught on: ${fish.catchDate}"
-        holder.pointsTextView.text = "FScore: ${fish.score ?: "N/A"}"
+        holder.weightTextView.text =
+            "Weight(g): ${fish.weight?.let { "%.2f".format(fish.weight) } ?: "N/A"}"
+        holder.lengthTextView.text =
+            "Length(cm): ${fish.length?.let { "%.2f".format(fish.length) } ?: "N/A"}"
+        holder.dateTextView.text = DateConverter.dateDateWithoutTimeString(fish.catchDate)
+        holder.pointsTextView.text = "%.2f".format(fish.score)
     }
 
     override fun getItemCount() = fishList.size

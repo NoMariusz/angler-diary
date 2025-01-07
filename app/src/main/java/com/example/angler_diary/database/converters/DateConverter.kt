@@ -39,5 +39,14 @@ class DateConverter {
                 null // Return null if parsing fails
             }
         }
+
+        // Convert Date to String
+        fun dateDateWithoutTimeString(date: Date?): String? {
+            val dateWithoutTimeFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+            return date?.let {
+                dateWithoutTimeFormat.format(it)
+            }
+        }
     }
 }
