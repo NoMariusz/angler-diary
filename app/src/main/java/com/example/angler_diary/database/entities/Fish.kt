@@ -25,7 +25,7 @@ import java.util.Date
     ]
 )
 data class Fish(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val speciesId: Int,
     val image: String? = null,
     val weight: Float? = null, // In g

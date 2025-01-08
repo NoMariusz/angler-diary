@@ -17,7 +17,5 @@ abstract class FishingGroundFormActionHandler(
         return FormActionResult(true, null)
     }
 
-    override suspend fun saveNewFScore(): FormActionResult {
-        return FormActionResult(true, null)
-    }
+    override suspend fun saveNewFScore(){}
 }

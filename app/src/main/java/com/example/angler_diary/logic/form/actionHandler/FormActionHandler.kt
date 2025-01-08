@@ -13,6 +13,7 @@ abstract class FormActionHandler(
 
         try {
             perform()
+            saveNewFScore()
         } catch (e: SQLiteConstraintException) {
             return FormActionResult(
                 false,
@@ -22,14 +23,10 @@ abstract class FormActionHandler(
             return FormActionResult(false, e.message)
         }
 
-
-        val saveNewFScoreResult = saveNewFScore()
-        if (!saveNewFScoreResult.success) return saveNewFScoreResult
-
         return FormActionResult(true, null)
     }
 
     abstract suspend fun validate(): FormActionResult
     abstract suspend fun perform()
-    abstract suspend fun saveNewFScore(): FormActionResult
+    abstract suspend fun saveNewFScore()
 }

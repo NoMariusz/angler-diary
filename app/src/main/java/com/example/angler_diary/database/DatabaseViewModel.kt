@@ -31,19 +31,23 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     val allFishingTripsForList = fishingTripDao.getTripsSummaryForList()
 
     suspend fun insert(entity: FishingGround) {
-        fishingGroundDao.insert(entity)
+        val idFromInsert = fishingGroundDao.insert(entity)
+        entity.id = idFromInsert.toInt()
     }
 
     suspend fun insert(entity: FishingTrip) {
-        fishingTripDao.insert(entity)
+        val idFromInsert = fishingTripDao.insert(entity)
+        entity.id = idFromInsert.toInt()
     }
 
     suspend fun insert(entity: Fish) {
-        fishDao.insert(entity)
+        val idFromInsert = fishDao.insert(entity)
+        entity.id = idFromInsert.toInt()
     }
 
     suspend fun insert(entity: FishSpecies) {
-        fishSpeciesDao.insert(entity)
+        val idFromInsert = fishSpeciesDao.insert(entity)
+        entity.id = idFromInsert.toInt()
     }
 
     suspend fun update(entity: FishingTrip) {

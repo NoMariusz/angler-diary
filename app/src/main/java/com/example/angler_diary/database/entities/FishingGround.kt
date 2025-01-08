@@ -11,6 +11,6 @@ import androidx.room.PrimaryKey
     )]
 )
 data class FishingGround(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val name: String
 ) : FishingObjectEntity

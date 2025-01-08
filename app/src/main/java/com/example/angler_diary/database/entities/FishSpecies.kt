@@ -14,7 +14,7 @@ import com.example.angler_diary.DEFAULT_FISH_SPECIES_BASE_SCORE
     )]
 )
 data class FishSpecies(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     val name: String,
     val image: String? = null,
     val baseScore: Int = DEFAULT_FISH_SPECIES_BASE_SCORE,
