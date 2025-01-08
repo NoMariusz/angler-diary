@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.angler_diary.database.entities.Fish
+import com.example.angler_diary.database.entities.FishAndSpeciesName
 import com.example.angler_diary.database.entities.FishSpecies
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
@@ -120,5 +121,13 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     suspend fun getAllFishSpecies(): List<FishSpecies> {
         return fishSpeciesDao.getAllSuspend()
+    }
+
+    suspend fun getTripFishes(id: Int): List<FishAndSpeciesName> {
+        return fishingTripDao.getTripFishes(id)
+    }
+
+    suspend fun getFishesBySpeciesId(id: Int): List<Fish> {
+        return fishDao.getBySpeciesId(id)
     }
 }

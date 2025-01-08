@@ -4,6 +4,7 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.logic.form.FormActionResult
 import com.example.angler_diary.logic.form.actionHandler.FormActionHandler
+import com.example.angler_diary.logic.form.score.FScoreController
 
 abstract class FishingTripFormActionHandler(
     viewModel: DatabaseViewModel,
@@ -21,5 +22,7 @@ abstract class FishingTripFormActionHandler(
         return FormActionResult(true, null)
     }
 
-    override suspend fun saveNewFScore() {}
+    override suspend fun saveNewFScore() {
+        FScoreController(viewModel).handleScoreOnEntity(entity)
+    }
 }

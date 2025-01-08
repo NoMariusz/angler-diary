@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.example.angler_diary.database.entities.FishAndSpeciesName
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.database.entities.FishingTripListSummary
@@ -36,4 +37,13 @@ interface FishingTripDao {
         inner join fishing_ground on ft.fishingGroundId = fishing_ground.id
     """)
     fun getTripsSummaryForList(): LiveData<List<FishingTripListSummary>>
+
+    @Query("""
+        SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.score, fs.name as speciesName FROM fish f
+        inner join fish_species fs on f.speciesId = fs.id
+        inner join fishing_trip ft on f.fishingTripId = ft.id
+        where fishingTripId = :id
+    """)
+    suspend fun getTripFishes(id: Int): List<FishAndSpeciesName>
+
 }

@@ -27,10 +27,12 @@ interface FishDao {
     @Query("SELECT * FROM fish")
     fun getAll(): LiveData<List<Fish>>
 
-    @Transaction
     @Query("""
         SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.score, fs.name as speciesName FROM fish f
         inner join fish_species fs on f.speciesId = fs.id
     """)
     fun getAllWithSpecies(): LiveData<List<FishAndSpeciesName>>
+
+    @Query("SELECT * FROM fish WHERE speciesId = :id")
+    suspend fun getBySpeciesId(id: Int): List<Fish>
 }

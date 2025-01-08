@@ -7,6 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.math.sqrt
 
+/**
+ * Class for purely calculating entity score
+ */
 class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor {
     override suspend fun visitFish(fish: Fish): Float {
         val species = withContext(Dispatchers.IO) {
@@ -22,6 +25,11 @@ class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor
     }
 
     override suspend fun visitFishingTrip(fishingTrip: FishingTrip): Float {
-        TODO("Not yet implemented")
+        val tripFishes = withContext(Dispatchers.IO) {
+            viewModel.getTripFishes(fishingTrip.id)
+        }
+
+        // score is sum of fishes score + 1 score per every trip hour
+        return tripFishes.sumOf { x -> x.score.toDouble() }.toFloat() + fishingTrip.durationHours * 1f
     }
 }

@@ -13,7 +13,7 @@ import java.util.Date
         entity = FishingGround::class,
         parentColumns = ["id"],
         childColumns = ["fishingGroundId"],
-        onDelete = ForeignKey.CASCADE
+        onDelete = ForeignKey.RESTRICT
     )]
 )
 data class FishingTrip(
@@ -23,7 +23,7 @@ data class FishingTrip(
     val endDate: Date? = null,
     var score: Float = 0f // Automatically calculated
 ): FishingObjectEntity, EntityWithFScore {
-    val duration: Float
+    val durationHours: Float
         get() = endDate?.let {
             val diffInMillis = it.time - startDate.time
             diffInMillis / (1000 * 60 * 60).toFloat() // Convert to hours

@@ -25,8 +25,4 @@ abstract class FishFormActionHandler(
 
         return FormActionResult(true, null)
     }
-
-    override suspend fun saveNewFScore() {
-        FScoreController(viewModel).handleScoreOnEntity(entity)
-    }
 }
