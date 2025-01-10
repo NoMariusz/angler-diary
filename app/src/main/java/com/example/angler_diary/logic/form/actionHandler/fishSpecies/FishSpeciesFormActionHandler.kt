@@ -18,12 +18,12 @@ abstract class FishSpeciesFormActionHandler(
             return FormActionResult(false, "Base score cannot be negative")
         }
 
-        if (entity.averageLength < 0) {
-            return FormActionResult(false, "Average length cannot be negative")
+        if (entity.averageLength <= 0) {
+            return FormActionResult(false, "Average length cannot be negative or 0")
         }
 
-        if (entity.averageWeight < 0) {
-            return FormActionResult(false, "Average weight cannot be negative")
+        if (entity.averageWeight <= 0) {
+            return FormActionResult(false, "Average weight cannot be negative or 0")
         }
 
         return FormActionResult(true, null)
