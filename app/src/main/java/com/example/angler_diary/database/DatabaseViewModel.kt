@@ -13,6 +13,7 @@ import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
 import com.example.angler_diary.database.entities.FishingTripListSummary
 import com.example.angler_diary.database.entities.FishingTripSummary
+import com.example.angler_diary.database.entities.ScoreHistory
 import kotlinx.coroutines.launch
 
 class DatabaseViewModel(application: Application) : AndroidViewModel(application) {
@@ -22,6 +23,7 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     private val fishingTripDao = db.fishingTripDao()
     private val fishSpeciesDao = db.fishSpeciesDao()
     private val fishDao = db.fishDao()
+    private val scoreHistoryDao = db.scoreHistoryDao()
 
     val allFishSpecies = fishSpeciesDao.getAll()
 
@@ -30,6 +32,8 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     val allFishingGrounds = fishingGroundDao.getAll()
 
     val allFishingTripsForList = fishingTripDao.getTripsSummaryForList()
+
+    // inserts
 
     suspend fun insert(entity: FishingGround) {
         val idFromInsert = fishingGroundDao.insert(entity)
@@ -51,6 +55,12 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         entity.id = idFromInsert.toInt()
     }
 
+    suspend fun insert(entity: ScoreHistory) {
+        scoreHistoryDao.insert(entity)
+    }
+
+    // updates
+
     suspend fun update(entity: FishingTrip) {
         fishingTripDao.update(entity)
     }
@@ -67,6 +77,8 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         fishSpeciesDao.update(entity)
     }
 
+    // deletes
+
     suspend fun delete(entity: FishingTrip) {
         fishingTripDao.delete(entity)
     }
@@ -82,6 +94,8 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
     suspend fun delete(entity: FishSpecies) {
         fishSpeciesDao.delete(entity)
     }
+
+    // selects
 
     suspend fun getFishingTripById(id: Int): FishingTrip? {
         return fishingTripDao.getById(id)
@@ -119,15 +133,33 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
         return fishingTripDao.getAllSummarySuspend()
     }
 
-    suspend fun getAllFishSpecies(): List<FishSpecies> {
-        return fishSpeciesDao.getAllSuspend()
-    }
-
     suspend fun getTripFishes(id: Int): List<FishAndSpeciesName> {
         return fishingTripDao.getTripFishes(id)
     }
 
+    suspend fun getAllFishSpecies(): List<FishSpecies> {
+        return fishSpeciesDao.getAllSuspend()
+    }
+
     suspend fun getFishesBySpeciesId(id: Int): List<Fish> {
         return fishDao.getBySpeciesId(id)
+    }
+
+    // score/score history related stuff
+
+    suspend fun getAllScoreHistory(): List<ScoreHistory> {
+        return scoreHistoryDao.getAllSuspend()
+    }
+
+    suspend fun getNewestScoreHistory(): ScoreHistory? {
+        return scoreHistoryDao.getNewest()
+    }
+
+    suspend fun getTripsScoreSum(): Float? {
+        return fishingTripDao.getScoreSum()
+    }
+
+    suspend fun getFishesWithoutTripScoreSum(): Float? {
+        return fishDao.getScoreSumWhenNotTrip()
     }
 }

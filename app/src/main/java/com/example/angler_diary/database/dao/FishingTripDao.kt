@@ -46,4 +46,7 @@ interface FishingTripDao {
     """)
     suspend fun getTripFishes(id: Int): List<FishAndSpeciesName>
 
+    @Query("SELECT sum(score) from fishing_trip")
+    suspend fun getScoreSum(): Float?
+
 }

@@ -4,6 +4,7 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.database.entities.Fish
 import com.example.angler_diary.database.entities.FishSpecies
 import com.example.angler_diary.database.entities.FishingTrip
+import com.example.angler_diary.database.entities.ScoreHistory
 
 /**
  * Class handling score updates at certain events, considering all consequences resulting from db relations
@@ -90,5 +91,24 @@ class FScoreController(private val viewModel: DatabaseViewModel) {
 
     // calculating overall score and saving in score history
 
-    private suspend fun reCalcAllScore() {}
+    private suspend fun reCalcAllScore() {
+        val score = calcActualScore()
+        saveNewScore(score)
+    }
+
+    private suspend fun calcActualScore(): Float {
+        val fishesWithoutTripsScore = viewModel.getFishesWithoutTripScoreSum() ?: 0f
+        val tripsScore = viewModel.getTripsScoreSum() ?: 0f
+
+        return tripsScore + fishesWithoutTripsScore
+    }
+
+    private suspend fun saveNewScore(score: Float){
+        // check if score changed, do not inset new score when nothing changes it will be a waste to
+        // put data to mobile database in every action when unnecessary
+        val actualScore = viewModel.getNewestScoreHistory()?.score
+        if(actualScore != null && score == actualScore) return
+
+        viewModel.insert(ScoreHistory(score = score))
+    }
 }
