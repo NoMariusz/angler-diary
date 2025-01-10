@@ -5,7 +5,7 @@ import com.example.angler_diary.database.entities.Fish
 import com.example.angler_diary.database.entities.FishingTrip
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlin.math.sqrt
+import kotlin.math.pow
 
 /**
  * Class for purely calculating entity score
@@ -18,10 +18,18 @@ class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor
 
         if (species == null) throw Exception("Cannot find fish species")
 
-        val weightMultiplier = if (fish.weight != null) fish.weight / species.averageWeight else 1f
-        val lengthMultiplier = if (fish.length != null) fish.length / species.averageLength else 1f
+        val multipliers = mutableListOf<Float>()
 
-        return species.baseScore * sqrt(weightMultiplier * lengthMultiplier)
+        if (fish.weight != null){
+            multipliers.add(fish.weight / species.averageWeight)
+        }
+
+        if (fish.length != null){
+            multipliers.add(fish.length / species.averageLength)
+        }
+
+        // multiply base score by multipliers product (sum but for multiplication) normalised by root
+        return species.baseScore * multipliers.fold(1f){acc, num -> acc * num}.pow(1/multipliers.size)
     }
 
     override suspend fun visitFishingTrip(fishingTrip: FishingTrip): Float {
