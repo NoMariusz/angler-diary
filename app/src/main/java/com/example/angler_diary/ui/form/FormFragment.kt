@@ -20,7 +20,7 @@ class FormFragment : Fragment() {
     private var _binding: FragmentFormBinding? = null
 
     // This property is only valid between onCreateView and
-    // onDestroyView.
+    // onDestroyView
     private val binding get() = _binding!!
     private lateinit var databaseViewModel: DatabaseViewModel
 

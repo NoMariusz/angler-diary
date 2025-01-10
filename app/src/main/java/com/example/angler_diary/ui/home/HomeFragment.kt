@@ -31,16 +31,16 @@ class HomeFragment : Fragment() {
 
         databaseViewModel = ViewModelProvider(this)[DatabaseViewModel::class.java]
 
-        binding.textHome.text = "Score: loading..."
-        lifecycleScope.launch {
-            val actualScoreData = withContext(Dispatchers.IO) {
-                databaseViewModel.getNewestScoreHistory()
-            }
-
-            binding.textHome.text = "Score: ${actualScoreData?.score ?: 0}"
-        }
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // load statistics data to UI
+        StatisticsManager(binding, databaseViewModel, requireContext()).loadStatistics(
+            lifecycleScope
+        )
     }
 
     override fun onDestroyView() {
