@@ -29,7 +29,9 @@ class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor
         }
 
         // multiply base score by multipliers product (sum but for multiplication) normalised by root
-        return species.baseScore * multipliers.fold(1f){acc, num -> acc * num}.pow(1/multipliers.size)
+        val statisticMultipliersMultiplier = if(multipliers.size >= 1) multipliers.fold(1f){acc, num -> acc * num}.pow(1/multipliers.size) else 1f
+
+        return species.baseScore * statisticMultipliersMultiplier
     }
 
     override suspend fun visitFishingTrip(fishingTrip: FishingTrip): Float {
