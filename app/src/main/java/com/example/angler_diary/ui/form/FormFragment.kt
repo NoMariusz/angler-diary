@@ -11,9 +11,8 @@ import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
 import com.example.angler_diary.logic.form.FormModes
-import com.example.angler_diary.ui.form.manager.factory.AddingFormManagerFactory
-import com.example.angler_diary.ui.form.manager.factory.EditingFormManagerFactory
 import com.example.angler_diary.ui.form.manager.factory.FormManagerFactory
+import com.example.angler_diary.ui.form.manager.factory.FormManagerFactoryInterface
 
 class FormFragment : Fragment() {
 
@@ -25,8 +24,7 @@ class FormFragment : Fragment() {
     private lateinit var databaseViewModel: DatabaseViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFormBinding.inflate(inflater, container, false)
 
@@ -48,7 +46,7 @@ class FormFragment : Fragment() {
         _binding = null
     }
 
-    private fun connectCancelBtn(){
+    private fun connectCancelBtn() {
         binding.cancelBtn.setOnClickListener {
             activity?.finish()
         }
@@ -63,27 +61,13 @@ class FormFragment : Fragment() {
     }
 
     private fun loadForm() {
-        val factory = getFormManagerFactory()
-        val manager =
-            factory.createManager(
-                getObjectId(),
-                getFishingObject(),
-                databaseViewModel,
-                requireContext(),
-                binding
-            ) { -> activity?.finish() }
+        val factory = FormManagerFactory(getFishingObject(), getMode())
+        val manager = factory.createManager(
+            getObjectId(), databaseViewModel, requireContext(), binding
+        ) { -> activity?.finish() }
 
         manager.initialiseInputs()
         manager.initialiseActions()
-    }
-
-    private fun getFormManagerFactory(): FormManagerFactory {
-        val mode = getMode()
-        return if (mode == FormModes.Adding) {
-            AddingFormManagerFactory()
-        } else {
-            EditingFormManagerFactory()
-        }
     }
 
     // helpers for arguments in intent
@@ -108,8 +92,7 @@ class FormFragment : Fragment() {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(key, T::class.java)
         } else {
-            @Suppress("DEPRECATION")
-            intent.getParcelableExtra(key)
+            @Suppress("DEPRECATION") intent.getParcelableExtra(key)
         }
     }
 }
