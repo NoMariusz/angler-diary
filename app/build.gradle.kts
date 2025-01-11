@@ -58,4 +58,7 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.common)
+
+    // for charts in home screen
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }

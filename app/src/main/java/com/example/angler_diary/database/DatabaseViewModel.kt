@@ -147,8 +147,8 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     // score/score history related stuff
 
-    suspend fun getAllScoreHistory(): List<ScoreHistory> {
-        return scoreHistoryDao.getAllSuspend()
+    suspend fun getAllScoreHistoryForChart(): List<ScoreHistory> {
+        return scoreHistoryDao.getAllSuspendWithGrouping()
     }
 
     suspend fun getNewestScoreHistory(): ScoreHistory? {

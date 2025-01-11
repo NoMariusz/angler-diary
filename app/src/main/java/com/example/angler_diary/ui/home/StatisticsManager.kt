@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentHomeBinding
 import com.example.angler_diary.ui.home.statisticControllers.ActualScoreStatisticController
+import com.example.angler_diary.ui.home.statisticControllers.ScoreHistoryChartStatisticController
 import kotlinx.coroutines.launch
 
 class StatisticsManager(
@@ -13,8 +14,9 @@ class StatisticsManager(
     private val context: Context
 ) {
     fun loadStatistics(lifecycleScope: LifecycleCoroutineScope) {
-        val controllers = listOf<StatisticController>(
-            ActualScoreStatisticController(binding, viewModel, context)
+        val controllers = listOf(
+            ActualScoreStatisticController(binding, viewModel, context),
+            ScoreHistoryChartStatisticController(binding, viewModel, context),
         )
 
         // initialize all of controllers
