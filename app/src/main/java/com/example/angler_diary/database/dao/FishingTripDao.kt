@@ -35,6 +35,7 @@ interface FishingTripDao {
     @Query("""
         SELECT ft.id, ft.startDate, ft.endDate, ft.score, fishing_ground.name as fishingGroundName FROM fishing_trip ft
         inner join fishing_ground on ft.fishingGroundId = fishing_ground.id
+        order by ft.startDate desc
     """)
     fun getTripsSummaryForList(): LiveData<List<FishingTripListSummary>>
 

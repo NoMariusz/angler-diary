@@ -31,6 +31,7 @@ interface FishDao {
         """
         SELECT f.id, f.image, f.weight, f.length, f.catchDate, f.score, fs.name as speciesName FROM fish f
         inner join fish_species fs on f.speciesId = fs.id
+        order by f.catchDate desc
     """
     )
     fun getAllWithSpecies(): LiveData<List<FishAndSpeciesName>>
