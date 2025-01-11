@@ -16,11 +16,20 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Form</string>
 
+    <string name="loading">Loading…</string>
     <string name="form_delete">Delete</string>
     <string name="form_cancel">Cancel</string>
     <string name="form_save">Save</string>
-    <string name="fscore_icon_descirption">FScore icon</string>
+
+    <string name="fScore_icon_description">FScore icon</string>
+    <string name="fScore_score_format">%.2f</string>
+    <string name="fish_item_weight">Weight: %s g</string>
+    <string name="fish_item_length">Length: %s cm</string>
+
     <string name="home_score_title" >FScore: </string>
-    <string name="loading">Loading…</string>
     <string name="home_score_history_title">Score History</string>
+    <string name="home_top3_fishes_title">Top 3 Fishes</string>
+    <string name="top3_fishes_item_place">%d.</string>
+    <string name="top3_fishes_item_date">Date: %1$s</string>
+    <string name="top3_fishes_item_ground">Caught in: %s</string>
 </resources>

@@ -6,6 +6,7 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentHomeBinding
 import com.example.angler_diary.ui.home.statisticControllers.ActualScoreStatisticController
 import com.example.angler_diary.ui.home.statisticControllers.ScoreHistoryChartStatisticController
+import com.example.angler_diary.ui.home.statisticControllers.Top3FishesStatisticController
 import kotlinx.coroutines.launch
 
 class StatisticsManager(
@@ -17,6 +18,7 @@ class StatisticsManager(
         val controllers = listOf(
             ActualScoreStatisticController(binding, viewModel, context),
             ScoreHistoryChartStatisticController(binding, viewModel, context),
+            Top3FishesStatisticController(binding, viewModel, context),
         )
 
         // initialize all of controllers

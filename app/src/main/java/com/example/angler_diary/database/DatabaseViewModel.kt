@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.angler_diary.database.entities.Fish
 import com.example.angler_diary.database.entities.FishAndSpeciesName
+import com.example.angler_diary.database.entities.FishFullData
 import com.example.angler_diary.database.entities.FishSpecies
 import com.example.angler_diary.database.entities.FishingGround
 import com.example.angler_diary.database.entities.FishingTrip
@@ -143,6 +144,10 @@ class DatabaseViewModel(application: Application) : AndroidViewModel(application
 
     suspend fun getFishesBySpeciesId(id: Int): List<Fish> {
         return fishDao.getBySpeciesId(id)
+    }
+
+    suspend fun getTop3Fishes(): List<FishFullData> {
+        return fishDao.getTop3()
     }
 
     // score/score history related stuff
