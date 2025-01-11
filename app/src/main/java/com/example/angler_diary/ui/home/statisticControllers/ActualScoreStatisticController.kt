@@ -20,6 +20,6 @@ class ActualScoreStatisticController(
             viewModel.getNewestScoreHistory()
         }
 
-        binding.scoreValue.text = "%.2f".format(actualScoreData?.score ?: 0)
+        binding.scoreValue.text = "%.2f".format(actualScoreData?.score ?: 0f)
     }
 }
