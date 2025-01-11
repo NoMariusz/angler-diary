@@ -7,70 +7,79 @@
     android:padding="8dp">
 
     <LinearLayout
-        android:id="@+id/linerMain"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="true"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textSpeciesName"
+        <LinearLayout
+            android:id="@+id/linerMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Species"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textDate"
+            <TextView
+                android:id="@+id/textSpeciesName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearStats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Date" />
+            android:layout_marginStart="4dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_item_weight" />
 
-    <LinearLayout
-        android:id="@+id/linearStats"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/linerMain"
-        app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/textLength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fish_item_length" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/textWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weight: N/A" />
-
-        <TextView
-            android:id="@+id/textLength"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Length: N/A" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView2"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_score_24" />
+            android:gravity="end"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
 
-        <TextView
-            android:id="@+id/textPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Score" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/fScore_icon_description"
+                app:srcCompat="@drawable/baseline_score_24" />
+
+            <TextView
+                android:id="@+id/textPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fScore_score_format" />
+        </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,7 +49,7 @@ class ListFragment : Fragment() {
 
     private fun loadRecyclerView() {
         val fishingObject = getFishingObject()
-        val listView = FishingObjectListViewFactory.create(databaseViewModel, fishingObject)
+        val listView = FishingObjectListViewFactory.create(databaseViewModel, fishingObject, requireContext())
         listView.prepareRecyclerView(
             binding.recyclerView,
             requireContext(),

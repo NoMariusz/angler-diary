@@ -1,5 +1,6 @@
 package com.example.angler_diary.ui.list.views.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,13 @@ import com.example.angler_diary.FishingObjects
 import com.example.angler_diary.R
 import com.example.angler_diary.database.converters.DateConverter
 import com.example.angler_diary.database.entities.FishAndSpeciesName
+import com.example.angler_diary.ui.FishStatistics
+import com.example.angler_diary.ui.UiUtils
 
 class FishRecyclerViewAdapter(
     private var fishList: List<FishAndSpeciesName>,
-    private val itemClickListener: ((Int, FishingObjects) -> Unit)
+    private val itemClickListener: ((Int, FishingObjects) -> Unit),
+    private val context: Context
 ) : FishingObjectListRecyclerViewAdapter<FishAndSpeciesName, FishRecyclerViewAdapter.FishViewHolder>() {
 
     inner class FishViewHolder(itemView: View) : FishingObjectListRecyclerViewViewHolder(itemView,
@@ -42,11 +46,11 @@ class FishRecyclerViewAdapter(
         val fish = fishList[position]
         holder.nameTextView.text = fish.speciesName
         holder.weightTextView.text =
-            "Weight(g): ${fish.weight?.let { "%.2f".format(fish.weight) } ?: "N/A"}"
+            UiUtils.getFormattedFishStatisticText(context, fish.weight, FishStatistics.Weight)
         holder.lengthTextView.text =
-            "Length(cm): ${fish.length?.let { "%.2f".format(fish.length) } ?: "N/A"}"
+            UiUtils.getFormattedFishStatisticText(context, fish.length, FishStatistics.Length)
         holder.dateTextView.text = DateConverter.dateDateWithoutTimeString(fish.catchDate)
-        holder.pointsTextView.text = "%.2f".format(fish.score)
+        holder.pointsTextView.text = context.getString(R.string.fScore_score_format, fish.score)
     }
 
     override fun getItemCount() = fishList.size
