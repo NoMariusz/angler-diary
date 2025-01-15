@@ -20,16 +20,19 @@ class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor
 
         val multipliers = mutableListOf<Float>()
 
-        if (fish.weight != null){
+        if (fish.weight != null) {
             multipliers.add(fish.weight / species.averageWeight)
         }
 
-        if (fish.length != null){
+        if (fish.length != null) {
             multipliers.add(fish.length / species.averageLength)
         }
 
         // multiply base score by multipliers product (sum but for multiplication) normalised by root
-        val statisticMultipliersMultiplier = if(multipliers.size >= 1) multipliers.fold(1f){acc, num -> acc * num}.pow(1/multipliers.size) else 1f
+        val statisticMultipliersMultiplier =
+            if (multipliers.size >= 1) multipliers.fold(1f) { acc, num -> acc * num }
+                .pow(1f / multipliers.size)
+            else 1f
 
         return species.baseScore * statisticMultipliersMultiplier
     }
@@ -40,6 +43,7 @@ class FScoreCalculator(private val viewModel: DatabaseViewModel) : FScoreVisitor
         }
 
         // score is sum of fishes score + 1 score per every trip hour
-        return tripFishes.sumOf { x -> x.score.toDouble() }.toFloat() + fishingTrip.durationHours * 1f
+        return tripFishes.sumOf { x -> x.score.toDouble() }
+            .toFloat() + fishingTrip.durationHours * 1f
     }
 }
