@@ -1,0 +1,21 @@
+[
+  {"name": "Sum", "baseScore": 200, "averageWeight": 5000, "averageLength": 70},
+  {"name": "Jesiotr zachodni", "baseScore": 100, "averageWeight": 2000, "averageLength": 75},
+  {"name": "Amur biały", "baseScore": 100, "averageWeight": 2500, "averageLength": 60},
+  {"name": "Tołpyga biała", "baseScore": 90, "averageWeight": 3000, "averageLength": 60},
+  {"name": "Szczupak", "baseScore": 70, "averageWeight": 1500, "averageLength": 45},
+  {"name": "Sandacz", "baseScore": 65, "averageWeight": 1500, "averageLength": 45},
+  {"name": "Brzana", "baseScore": 75, "averageWeight": 1000, "averageLength": 40},
+  {"name": "Pstrąg potokowy", "baseScore": 66, "averageWeight": 500, "averageLength": 30},
+  {"name": "Lipień", "baseScore": 65, "averageWeight": 300, "averageLength": 30},
+  {"name": "Karp", "baseScore": 50, "averageWeight": 1000, "averageLength": 30},
+  {"name": "Jaź", "baseScore": 45, "averageWeight": 400, "averageLength": 25},
+  {"name": "Kleń", "baseScore": 45, "averageWeight": 400, "averageLength": 25},
+  {"name": "Lin", "baseScore": 45, "averageWeight": 300, "averageLength": 25},
+  {"name": "Okoń", "baseScore": 35, "averageWeight": 200, "averageLength": 18},
+  {"name": "Wzdręga", "baseScore": 30, "averageWeight": 100, "averageLength": 15},
+  {"name": "Płoć", "baseScore": 15, "averageWeight": 100, "averageLength": 15},
+  {"name": "Leszcz", "baseScore": 20, "averageWeight": 500, "averageLength": 25},
+  {"name": "Karaś", "baseScore": 10, "averageWeight": 150, "averageLength": 15},
+  {"name": "Ukleja", "baseScore": 10, "averageWeight": 20, "averageLength": 10}
+]

@@ -12,7 +12,6 @@ import com.example.angler_diary.database.DatabaseViewModel
 import com.example.angler_diary.databinding.FragmentFormBinding
 import com.example.angler_diary.logic.form.FormModes
 import com.example.angler_diary.ui.form.manager.factory.FormManagerFactory
-import com.example.angler_diary.ui.form.manager.factory.FormManagerFactoryInterface
 
 class FormFragment : Fragment() {
 
